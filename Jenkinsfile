@@ -54,6 +54,8 @@ pipeline {
                         )
                     ]) {
                         sh '''
+                            set -e
+
                             echo "$DOCKER_PASS" | docker login \
                             -u "$DOCKER_USER" --password-stdin
 
@@ -88,8 +90,10 @@ pipeline {
                         )
                     ]) {
                         sh '''
+                            set -e
+
                             git remote set-url origin \
-                            https://${GH_USER}:${GH_TOKEN}@github.com/Johnjose10/test1.git
+                            "https://${GH_USER}:${GH_TOKEN}@github.com/Johnjose10/test1.git"
 
                             git pull --rebase origin main
 
@@ -124,6 +128,9 @@ pipeline {
         failure {
             echo 'Pipeline failed. Please review the stage logs above.'
         }
+
+        always {
+            echo 'Jenkins pipeline execution completed.'
+        }
     }
 }
-```
