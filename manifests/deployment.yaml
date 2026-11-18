@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: test1
-          image: docker777john/test1:latest
+          image: docker777john/test1:4
           imagePullPolicy: Always
 
           ports:
